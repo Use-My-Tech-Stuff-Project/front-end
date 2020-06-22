@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as Yup from 'yup';
+import './loginStyles.css';
 
 import LoginSchema from './LoginSchema';
 
@@ -55,31 +56,36 @@ export default function Login() {
     }
 
     return(
-        <div>
+        <div className = 'login'>
             <h3>Log In</h3>
             <p>Don't have an account? <a href = ''>Sign up</a></p>
             <form onSubmit = {onSubmit}>
-                <div className = 'errors'>
-                    <div>{formErrors.user}</div>
-                    <div>{formErrors.password}</div>
-                    <div>{formErrors.valid}</div>
+                <div className = 'text'>
+                    <label>
+                        <input
+                            name = 'user'
+                            value = {formValues.user}
+                            type = 'text'
+                            onChange = {onInputChange}
+                            placeholder = "Username"
+                            size = '30'
+                        />
+                    </label>
+                   <div className = 'error'><p>{formErrors.user}</p></div>
                 </div>
-                <label>Username:
-                    <input
-                        name = 'user'
-                        value = {formValues.user}
-                        type = 'text'
-                        onChange = {onInputChange}
-                    />
-                </label>
-                <label>Password:
-                    <input
-                        name = 'password'
-                        value = {formValues.password}
-                        type = 'text'
-                        onChange = {onInputChange}
-                    />
-                </label>
+                <div className = 'text'>
+                    <label className = 'text'>
+                        <input
+                            name = 'password'
+                            value = {formValues.password}
+                            type = 'text'
+                            onChange = {onInputChange}
+                            placeholder = "Password"
+                            size = '30'
+                        />
+                    </label>
+                    <div className = 'error'><p>{formErrors.password}</p></div>
+                </div>
                 <label>
                     <input
                         name = 'valid'
@@ -88,6 +94,7 @@ export default function Login() {
                         onChange = {onCheckBoxChange}
                     />
                 I am not a Robot</label>
+                <div className = 'error'><p>{formErrors.valid}</p></div>
                 <button>Log in</button>
             </form>
         </div>

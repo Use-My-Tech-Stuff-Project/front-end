@@ -1,0 +1,27 @@
+.login {
+    border: 1px solid red;
+    width: 40%;
+    display: flex;
+    flex-flow: column nowrap;
+}
+.login form {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+}
+.login button {
+    width: 30%;
+    padding: 1%;
+}
+.text input {
+    padding: 5%;
+}
+.text {
+    background-color: pink;
+}
+.error {
+    color: red;
+    font-size: .7rem;
+    text-align: left;
+    width: 40%;
+}
