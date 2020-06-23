@@ -1,6 +1,10 @@
+
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
 import './App.css';
+import SignUp from './components/SignUp'
+import { Switch, Route, Link } from 'react-router-dom'
+
+import Login from './components/login/Login';
 
 import RentalPage from "./components/RentalPage";
 import Item from "./components/Item";
@@ -31,16 +35,35 @@ function App() {
   ]);
 
   return (
-    <Router>
-      <div className="App">
-        <Route path="/rentalpage">
+
+    <div className="App">
+
+      <nav>
+        <h1> Use My Tech Stuff</h1>
+        <div className='nav-links'>
+        <Link to='/'> Home </Link>
+        <Link to='/login'> Login </Link>
+        <Link to='/signup'>Signup</Link>
+        </div>
+      </nav>
+      <Switch>
+        <Route path='/signup'>
+          <SignUp/>
+        </Route>
+        <Route path = '/login'>
+          <Login />
+        </Route>
+      <Route>
+      <Route path="/rentalpage">
           <RentalPage user={user} items={items} />
         </Route>
         <Route path={`/item/:id`}>
           <Item items={items} />
         </Route>
-      </div>
-    </Router>
+      </Route>
+      </Switch>
+
+    </div>
   );
 }
 
