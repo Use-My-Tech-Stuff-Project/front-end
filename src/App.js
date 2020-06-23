@@ -3,9 +3,12 @@ import './App.css';
 import SignUp from './components/SignUp'
 import {Switch, Route, Link} from 'react-router-dom'
 
+import Login from './components/login/Login';
+
 function App() {
   return (
     <div className="App">
+    
       <nav>
         <h1> Use My Tech Stuff</h1>
         <div className='nav-links'>
@@ -18,10 +21,14 @@ function App() {
         <Route path='/signup'>
           <SignUp/>
         </Route>
+        <Route path = '/login'>
+          <Login />
+        </Route>
       <Route>
 
       </Route>
-      </Switch>  
+      </Switch>
+    
     </div>
   );
 }
