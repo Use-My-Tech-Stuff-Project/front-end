@@ -1,5 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200&display=swap');
+
+
 .App {
   text-align: center;
+  box-sizing: border-box;
 }
 
 .App-logo {
@@ -35,4 +39,38 @@
   to {
     transform: rotate(360deg);
   }
+ 
 }
+
+.text{
+  font-family: 'Yanone Kaffeesatz';
+  padding-top: 1%;
+  text-decoration: none;
+  margin: 2%;
+  color:#282c34;
+  
+}
+nav{
+  display:flex;
+  justify-content: space-around;
+  align-items: center ;
+  background: #E2EDE8;
+
+}
+.nav-links{
+  letter-spacing: .3rem;
+  display:flex;
+}
+.link{
+  padding: 5%;
+}
+
+button.MuiButton-contained{
+  background-color: rgba(11, 41, 28, .7);
+  color: white;
+}
+
+.MuiSvgIcon-root{
+  color:rgba(11, 41, 28, .7);
+}
+
