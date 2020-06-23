@@ -5,13 +5,9 @@ import * as Yup from 'yup';
 import formSchema from '../validation/SignupSchema'
 import LockIcon from '@material-ui/icons/Lock'
 import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
 import FilledInput from '@material-ui/core/FilledInput';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
@@ -19,18 +15,24 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 
 const initailFormValues = {
-    name:'',
+    firstname:'',
+    lastname:'',
     email: '',
+    phone: '',
     username:'',
+    address: '',
     password:'',
     terms: false,
     showPassword: false,
   } 
 
   const initailFormErrors = {
-    name:'',
+    firstName:'',
+    lastName:'',
     email: '',
+    phone:'',
     username:'',
+    address: '',
     password:'',
     terms: false,
     ShowPassword: false
@@ -136,12 +138,25 @@ export default function SignUp () {
                         <TextField
                         style={makeStyles().input}
                         type='text'
-                        name='name'
-                        value={formValues.name}
+                        name='firstname'
+                        value={formValues.firstname}
                         onChange={onInputChange}
                         helperText={formErrors.name}
                         variant='filled'
-                        placeholder='Name'
+                        placeholder='First Name'
+                        fullWidth = {true}
+                        />
+                    </label>
+                    <label>
+                        <TextField
+                        style={makeStyles().input}
+                        type='text'
+                        name='lastname'
+                        value={formValues.lastname}
+                        onChange={onInputChange}
+                        helperText={formErrors.name}
+                        variant='filled'
+                        placeholder='Last Name'
                         fullWidth = {true}
                         />
                     </label>
@@ -156,6 +171,32 @@ export default function SignUp () {
                         helperText={formErrors.email}
                         variant='filled'
                         placeholder="Email"
+                        fullWidth = {true}
+                        />
+                    </label>
+                    <label>
+                        <TextField
+                        style={makeStyles().input}
+                        type='text'
+                        name='phone'
+                        value={formValues.phone}
+                        onChange={onInputChange}
+                        helperText={formErrors.phone}
+                        variant='filled'
+                        placeholder='Phone Number'
+                        fullWidth = {true}
+                        />
+                    </label>
+                    <label>
+                        <TextField
+                        style={makeStyles().input}
+                        type='text'
+                        name='address'
+                        value={formValues.address}
+                        onChange={onInputChange}
+                        helperText={formErrors.address}
+                        variant='filled'
+                        placeholder='Address'
                         fullWidth = {true}
                         />
                     </label>
