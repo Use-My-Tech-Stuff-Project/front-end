@@ -1,6 +1,6 @@
 import React from 'react'
-import {useState} from 'react'
-import {Button, TextField, Checkbox} from '@material-ui/core'
+import {useState, useEffect} from 'react'
+import {TextField , Button, FormControl} from '@material-ui/core'
 import * as Yup from 'yup';
 import formSchema from '../validation/SignupSchema'
 import LockIcon from '@material-ui/icons/Lock'
@@ -10,6 +10,9 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import axios from 'axios'
+import {Link} from 'react-router-dom'
+
 
 
 
@@ -22,7 +25,6 @@ const initailFormValues = {
     username:'',
     address: '',
     password:'',
-    terms: false,
     showPassword: false,
   } 
 
@@ -34,18 +36,18 @@ const initailFormValues = {
     username:'',
     address: '',
     password:'',
-    terms: false,
     ShowPassword: false
   }
 
-  const initialDisabled = true 
+
+  const initailUsers = []
 
 
 export default function SignUp () {
 
     const [formValues , setFormValues] = useState(initailFormValues)
     const [formErrors , setFormErrors] = useState(initailFormErrors)
-    const [disabled, setDisabled] = useState(initialDisabled) 
+    const [users , setUsers] = useState(initailUsers)
 
 
       const onInputChange = evt =>{
@@ -75,28 +77,47 @@ export default function SignUp () {
       
       } 
 
+    const getUsers = () =>{
+     axios.get('https://usemytechstuffapp.herokuapp.com')
+        .then(response =>{
+            setUsers(response.data)
+        })
+        .catch( err=>{
+            debugger
+        })
+    }
 
+    useEffect(()=>{
+        getUsers()
+    },[])
+    
+    const postNewUser = () =>{
+        axios.post('https://usemytechstuffapp.herokuapp.com/api/register',{
+            firstname: formValues.firstname,
+            lastname:formValues.lastname,
+            email: formValues.email,
+            phone: formValues.phone,
+            username:formValues.username,
+            address: formValues.address,
+            password:formValues.password
+         })
+        .then(response =>{
+            setUsers([...users, response.data])
+        })
+        .catch(err =>{
+            debugger
+        })
+        .finally(()=>{
+            setFormValues(initailFormValues)
+        })
+    }
+    
 
     const onSubmit = evt =>{
         evt.preventDefault()
+        postNewUser(formValues)
     }
 
-
-
-    const onCheckboxChange = evt => {
-        const { name, checked } = evt.target
-       
-        setFormValues({
-          ...formValues,
-            [name]: checked,
-          })
-      }
-
-
-
-    formSchema.isValid(formValues).then(valid=>{
-        setDisabled(!valid);
-    },[formValues])
 
     
       const handleClickShowPassword = () => {
@@ -110,17 +131,26 @@ export default function SignUp () {
     const makeStyles = () =>{
 
         return {
+            signup:{
+                padding: '2%',
+                height: '70%',
+                background:'ivory',
+            },
             container:{
-                width: '50%',
+                width: '30%',
+               
                 display:'flex',
-                flexDirection: 'column',
+                flexDirection: 'column', 
             },
             div:{
                 display:'flex',
-                justifyContent:'center'
+                justifyContent:'center',  
             },
             input:{
-                margin: '2%',
+                margin: '2%',   
+            },
+            icon:{
+                fontSize:'30',
             }
         }
 
@@ -128,10 +158,12 @@ export default function SignUp () {
  
  
     return (
-        <form onSubmit={onSubmit}>
-            <h1>Sign up</h1>
-            <p> * Indicates a required field</p>
-            <LockIcon style={{fontSize: 30}}/>
+      
+        <form style={makeStyles().signup} onSubmit={onSubmit} >
+        <div >
+            <h1 className='text' >Sign up</h1>
+            <LockIcon style={makeStyles().icon}/>
+            <h2 className='text' > * Indicates a required field</h2>
             <div style={makeStyles().div} >
                 <div  style={makeStyles().container}className='bigContainer'>
                     <label>
@@ -141,7 +173,7 @@ export default function SignUp () {
                         name='firstname'
                         value={formValues.firstname}
                         onChange={onInputChange}
-                        helperText={formErrors.name}
+                        helperText={formErrors.firstname}
                         variant='filled'
                         placeholder='First Name'
                         fullWidth = {true}
@@ -154,7 +186,7 @@ export default function SignUp () {
                         name='lastname'
                         value={formValues.lastname}
                         onChange={onInputChange}
-                        helperText={formErrors.name}
+                        helperText={formErrors.lastname}
                         variant='filled'
                         placeholder='Last Name'
                         fullWidth = {true}
@@ -236,23 +268,19 @@ export default function SignUp () {
                         labelWidth={70}
                         />
                          <FormHelperText id="outlined-helper-text">{formErrors.password}</FormHelperText>
-                    <label> Terms of Service
-                        <Checkbox
-                        type='checkbox'
-                        name='terms'
-                        value={formValues.terms}
-                        onChange={onCheckboxChange}
-                        helperText={formErrors.terms}
-                        />
-                    </label>  
+                    <Link to='/login' className='text'>Already have an Account?.... Click here to Login!</Link>
+              
                 </div>
             </div>
             <div className='btn'>
-                <Button  disabled={disabled}> Submit </Button>
+                <Button type='submit' 
+                variant='contained'
+                > Sign Up  </Button>
 
             </div>
-
+            </div>                
         </form>
+      
     )
 }
 

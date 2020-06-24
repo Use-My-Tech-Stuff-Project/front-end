@@ -33,11 +33,11 @@ function App() {
     <div className="App">
 
       <nav>
-        <h1> Use My Tech Stuff</h1>
+        <h1 className='text'> Use My Tech Stuff</h1>
         <div className='nav-links'>
-          <Link to='/'> Home </Link>
-          <Link to='/login'> Login </Link>
-          <Link to='/signup'>Signup</Link>
+        <Link to='/' className='text link'> Home </Link>
+        <Link to='/login' className='text link'> Login </Link>
+        <Link to='/signup' className='text link'>Signup</Link>
           {/* <Link to='/ownerpage'>Owner Page</Link>
           <Link to='/rentalpage'>Rental Page</Link> */}
         </div>
