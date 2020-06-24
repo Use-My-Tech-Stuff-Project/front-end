@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import SignUp from './components/SignUp'
@@ -16,15 +15,15 @@ import AddItem from "./components/AddItem";
 import ReturnItem from "./components/ReturnItem";
 
 function App() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({"message":"Please login again","token":"","id":1});
   const [items, setItems] = useState([]);
 
   function getItems() {
-      axiosWithAuth()
-        .get("/api/items")
-        .then(res => setItems(res.data))
+    axiosWithAuth()
+      .get("/api/items")
+      .then(res => setItems(res.data))
   }
-  
+
 
   useEffect(() => getItems(), [])
 
@@ -35,11 +34,11 @@ function App() {
       <nav>
         <h1 className='text'> Use My Tech Stuff</h1>
         <div className='nav-links'>
-        <Link to='/' className='text link'> Home </Link>
-        <Link to='/login' className='text link'> Login </Link>
-        <Link to='/signup' className='text link'>Signup</Link>
-          {/* <Link to='/ownerpage'>Owner Page</Link>
-          <Link to='/rentalpage'>Rental Page</Link> */}
+          <Link to='/' className='text link'> Home </Link>
+          <Link to='/login' className='text link'> Login </Link>
+          <Link to='/signup' className='text link'>Signup</Link>
+          <Link to='/ownerpage'>Owner Page</Link>
+          <Link to='/rentalpage'>Rental Page</Link>
         </div>
       </nav>
       <Switch>
@@ -61,13 +60,13 @@ function App() {
         <OwnerPage user={user} items={items} />
       </PrivateRoute>
       <PrivateRoute path={`/updateItem/:id`}>
-        <UpdateItem items={items} user={user} getItems={getItems}/>
+        <UpdateItem items={items} user={user} getItems={getItems} />
       </PrivateRoute>
       <PrivateRoute path={`/additem`}>
-        <AddItem user={user} items={items} getItems={getItems}/>
+        <AddItem user={user} items={items} getItems={getItems} />
       </PrivateRoute>
       <PrivateRoute path={`/rentedItem/:id`}>
-        <ReturnItem items={items} user={user} getItems={getItems}/>
+        <ReturnItem items={items} user={user} getItems={getItems} />
       </PrivateRoute>
     </div>
   );

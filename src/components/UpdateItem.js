@@ -91,8 +91,8 @@ const UpdateItem = (props) => {
                 <StyledImg src={itemValues.imgURL} alt="Images unavailable" />
                 <p>Type: {itemValues.type}</p>
                 <p>{itemValues.description}</p>
-                <p>Brand: {itemValues.brand}</p>
-                <p>Model: {itemValues.model}</p>
+                {itemValues.brand ? <p>Brand: {itemValues.brand}</p> : <p>Brand: Unavailable</p>}
+                {itemValues.model ? <p>Model: {itemValues.model}</p> : <p>Model: Unavailable</p>}
             </StyledCard>
             <form onSubmit={handleSubmit}>
                 <StyledCardOne>

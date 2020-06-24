@@ -70,8 +70,8 @@ const Item = ({ items, user, getItems }) => {
             <StyledImg src={currentItem.imgURL} alt="Images unavailable" />
             <p>Type: {currentItem.type}</p>
             <p>{currentItem.description}</p>
-            <p>Brand: {currentItem.brand}</p>
-            <p>Model: {currentItem.model}</p>
+            {currentItem.brand ? <p>Brand: {currentItem.brand}</p> : <p>Brand: Unavailable</p>}
+            {currentItem.model ? <p>Model: {currentItem.model}</p> : <p>Model: Unavailable</p>}
             <Button variant="contained" color="primary" onClick={backSubmit}>Back</Button>
             <br></br>
             <Button variant="contained" color="secondary" onClick={rentItem}>Rent</Button>
