@@ -74,3 +74,10 @@ button.MuiButton-contained{
   color:rgba(11, 41, 28, .7);
 }
 
+html {
+  background-color: ivory;
+}
+
+.simonText {
+  font-family: 'Yanone Kaffeesatz';
+}

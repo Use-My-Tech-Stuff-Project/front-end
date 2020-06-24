@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom"
+
 import { Card } from "@material-ui/core";
 import styled from "styled-components";
 
@@ -24,12 +25,12 @@ const RentedList = ({ user, items }) => {
     console.log(rentedItems)
     return (
         <div>
-            <h2>Rented Items</h2>
+            <h1 className="simonText">Rented Items</h1>
             {
                 rentedItems.map(it => {
                     return (
                         <StyledCard onClick={() => push(`/rentedItem/${it.id}`)}>
-                            <p>{it.title}</p>
+                            <h3 className="simonText">{it.title}</h3>
                         </StyledCard>
                     )
                 })

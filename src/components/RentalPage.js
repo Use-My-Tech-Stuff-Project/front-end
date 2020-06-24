@@ -1,28 +1,18 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import ItemList from "./ItemList";
 
 const RentalPage = props => {
-    const {user, items} = props;
-//   const [items, setItems] = useState([]);
-
-//   const getAllItems = () => {
-//     axiosWithAuth()
-//         .get("/api/items")
-//         .then(res => setItems(res.data))
-//         .catch(err => console.log(err))
-// }
-
-//   useEffect(() => {
-//     getAllItems();
-// }, [])
+  const history = useHistory();
+  const { push } = history;
+  const { user, items } = props;
 
   return (
     <>
-      <ItemList items={items} user={user}/>
-      {/* <p>test</p>
-      <p>{user.username}</p>
-      <p>{items[0].name}</p> */}
+      {
+        user ? <ItemList items={items} user={user} /> : push("/login")
+      }
     </>
   );
 };

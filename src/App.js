@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import SignUp from './components/SignUp'
 import { Switch, Route, Link } from 'react-router-dom'
 
-import Login from './components/login/Login';
+import { axiosWithAuth } from './utils/axiosWithAuth';
 
+import './App.css';
+
+import SignUp from './components/SignUp'
+import Login from './components/login/Login';
 import RentalPage from "./components/RentalPage";
 import Item from "./components/Item";
-import { axiosWithAuth } from './utils/axiosWithAuth';
 import PrivateRoute from "./components/PrivateRoute"
 import OwnerPage from "./components/OwnerPage";
 import UpdateItem from "./components/UpdateItem";
@@ -15,7 +16,7 @@ import AddItem from "./components/AddItem";
 import ReturnItem from "./components/ReturnItem";
 
 function App() {
-  const [user, setUser] = useState({"message":"Please login again","token":"","id":1});
+  const [user, setUser] = useState();
   const [items, setItems] = useState([]);
 
   function getItems() {
@@ -23,7 +24,6 @@ function App() {
       .get("/api/items")
       .then(res => setItems(res.data))
   }
-
 
   useEffect(() => getItems(), [])
 
@@ -37,8 +37,8 @@ function App() {
           <Link to='/' className='text link'> Home </Link>
           <Link to='/login' className='text link'> Login </Link>
           <Link to='/signup' className='text link'>Signup</Link>
-          <Link to='/ownerpage'>Owner Page</Link>
-          <Link to='/rentalpage'>Rental Page</Link>
+          <Link to='/ownerpage' className='text link'>Owner Page</Link>
+          <Link to='/rentalpage' className='text link'>Rental Page</Link>
         </div>
       </nav>
       <Switch>
