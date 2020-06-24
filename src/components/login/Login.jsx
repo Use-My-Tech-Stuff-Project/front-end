@@ -100,65 +100,61 @@ export default function Login(props) {
 
     return(
         <div className = 'login'>
-            <h2>Log In</h2>
-            <p>Don't have an account? <Link to = '/signup'>Sign up</Link></p>
+            <h1>Log In</h1>
+            <p id = 'signUpbtn'>Don't have an account? <Link to = '/signup'><span>Sign up</span></Link></p>
             <form onSubmit = {onSubmit}>
                 <div className = 'text'>
-                    <label>
-                        <TextField
-                            name = 'user'
-                            value = {formValues.user}
-                            type = 'text'
-                            onChange = {onInputChange}
-                            placeholder = "Username"
-                            fullWidth
-                            variant = 'filled'
-                            size = 'medium'
-                            InputProps = {{
-                                startAdornment: (
-                                    <InputAdornment position = 'start'>
-                                        <AccountCircle />
-                                    </InputAdornment>
-                                )
-                            }}
-                        />
-                    </label>
+                    <TextField
+                        name = 'user'
+                        value = {formValues.user}
+                        type = 'text'
+                        onChange = {onInputChange}
+                        placeholder = "Username"
+                        fullWidth
+                        variant = 'filled'
+                        size = 'medium'
+                        InputProps = {{
+                            startAdornment: (
+                                <InputAdornment position = 'start'>
+                                    <AccountCircle />
+                                </InputAdornment>
+                            )
+                        }}
+                    />
                    <div className = 'error'><p>{formErrors.user}</p></div>
                 </div>
                 <div className = 'text'>
-                    <label>
-                        <TextField
-                            id = 'pass'
-                            name = 'password'
-                            value = {formValues.password}
-                            type = 'password'
-                            onChange = {onInputChange}
-                            placeholder = "Password"
-                            fullWidth
-                            variant = 'filled'
-                            size = 'medium'
-                            InputProps = {{
-                                startAdornment: (
-                                    <InputAdornment position = 'start'>
-                                        <VpnKeyIcon />
-                                    </InputAdornment>
-                                ),
-                                endAdornment: (
-                                    <InputAdornment position = 'end'>
-                                        <div onClick = {passwordChange}>
-                                            <div  id = 'on'>
-                                             <VisibilityOffIcon />
-                                            </div>
-                                            <div id = 'off' className = 'visible'>
-                                              <VisibilityIcon />
-                                            </div>
+                    <TextField
+                        id = 'pass'
+                        name = 'password'
+                        value = {formValues.password}
+                        type = 'password'
+                        onChange = {onInputChange}
+                        placeholder = "Password"
+                        fullWidth
+                        variant = 'filled'
+                        size = 'medium'
+                        InputProps = {{
+                            startAdornment: (
+                                <InputAdornment position = 'start'>
+                                    <VpnKeyIcon />
+                                </InputAdornment>
+                            ),
+                            endAdornment: (
+                                <InputAdornment position = 'end'>
+                                    <div onClick = {passwordChange}>
+                                        <div  id = 'on'>
+                                            <VisibilityOffIcon />
                                         </div>
-                                    </InputAdornment>
-                                )
-                            }}
-                            
-                        />
-                    </label>
+                                        <div id = 'off' className = 'visible'>
+                                            <VisibilityIcon />
+                                        </div>
+                                    </div>
+                                </InputAdornment>
+                            )
+                        }}
+                        
+                    />
                     <div className = 'error'><p>{formErrors.password}</p></div>
                 </div>
                 <div className = 'roboCheck'>
@@ -170,7 +166,6 @@ export default function Login(props) {
                                 type = 'checkbox'
                                 onChange = {onCheckBoxChange}
                                 size = 'medium'
-                                label = 'I am not a Robot'
                             />
                         }
                         label = 'I am not a Robot'
