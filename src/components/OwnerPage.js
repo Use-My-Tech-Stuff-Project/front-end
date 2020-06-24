@@ -5,6 +5,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import OwnedList from "./OwnedList";
 import RentedItems from "./RentedItems";
+import { Button } from "@material-ui/core";
 
 const OwnerPage = props => {
     const { user, items } = props;
@@ -31,7 +32,7 @@ const OwnerPage = props => {
     return (
         <>
             <h1 className="simonText">{user.message}</h1>
-            <button onClick={addHandle}>Add Item</button>
+            <Button variant="contained" color="primary" onClick={addHandle}>Add Item</Button>
             {/* <button onClick={editProfile}>Edit Profile</button> */}
             {
                 // edit profile isnt possible with API 
