@@ -1,6 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200&display=swap');
+
 .login {
+    padding: 2%;
+    font-family: 'Yanone Kaffeesatz';
     display: flex;
     flex-flow: column nowrap;
+    background-color: ivory;
 }
 .login form {
     display: flex;
@@ -12,18 +17,25 @@
 }
 .login Button {
     background-color: rgba(11, 41, 28, .7);
-    padding: 1%;
-    width: 10%;
 }
 .text {
-    width: 50%;
-    margin-top: 2%;
+    width: 30%;
+}
+.roboCheck label {
+    font-family: 'Yanone Kaffeesatz';
 }
 .error {
     color: red;
-    font-size: .7rem;
+    font-weight: bold;
     text-align: left;
 }
 .visible {
     display: none;
+}
+#signUpbtn {
+    font-size: 1.1rem;
+}
+#signUpbtn span {
+    font-weight: bold;
+    color: rgb(11, 41, 28);
 }
