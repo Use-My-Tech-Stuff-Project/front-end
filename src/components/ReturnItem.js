@@ -1,8 +1,3 @@
-// display item information
-// 2 buttons - 1 to go back and 1 to rent
-// back button will just push(/rentalpage)
-// rent button will put availability = "false"
-
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -24,7 +19,7 @@ const StyledImg = styled.img`
     height: auto;
 `;
 
-const Item = ({ items, user, getItems }) => {
+const ReturnItem = ({ items, user, getItems }) => {
     const history = useHistory();
     const { push } = history;
     let { id } = useParams();
@@ -32,26 +27,25 @@ const Item = ({ items, user, getItems }) => {
 
     const backSubmit = e => {
         e.preventDefault();
-        push("/rentalpage")
+        push("/ownerpage")
     }
 
-    const rentItem = e => {
+    const returnCurrent = e => {
         e.preventDefault();
         // .put to availability
         // waiting for api
-        console.log({ ...currentItem, availability: false, renter: user.id })
+        console.log({ ...currentItem, availability: true, renter: null })
         axiosWithAuth()
-            .put(`/api/items/${id}`, { ...currentItem, availability: false, renter: user.id })
+            .put(`/api/items/${id}`, { ...currentItem, availability: true, renter: null })
             .then(res => {
                 console.log(res)
                 getItems()
-                push("/rentalpage")
+                push("/ownerpage")
             })
             .catch(err => console.log(err))
     }
 
     console.log(id);
-    // const currentItem = items.find(el => el.id === id); // would use useEffect
 
     useEffect(() => {
         axiosWithAuth()
@@ -72,11 +66,11 @@ const Item = ({ items, user, getItems }) => {
             <p>{currentItem.description}</p>
             <p>Brand: {currentItem.brand}</p>
             <p>Model: {currentItem.model}</p>
-            <Button variant="contained" color="primary" onClick={backSubmit}>Back</Button>
+            <Button variant="contained" color="default" onClick={backSubmit}>Back</Button>
             <br></br>
-            <Button variant="contained" color="secondary" onClick={rentItem}>Rent</Button>
+            <Button variant="contained" color="secondary" onClick={returnCurrent}>Return Item</Button>
         </StyledCard>
     )
 }
 
-export default Item;
+export default ReturnItem;

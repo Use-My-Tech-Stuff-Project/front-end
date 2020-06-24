@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import {useHistory} from "react-router-dom";
 import * as Yup from 'yup';
 import './loginStyles.css';
+import {axiosWithAuth} from "../../utils/axiosWithAuth";
 
 import LoginSchema from './LoginSchema';
 
@@ -15,9 +17,12 @@ const initalFormErrors = {
     valid: false,
 }
 
-export default function Login() {
+export default function Login(props) {
+    const { setUser } = props;
     const [ formValues, setFormValues ] = useState(initalValues);
     const [ formErrors, setFormErrors ] = useState(initalFormErrors);
+    const history = useHistory();
+    const { push } = history;
 
     const onInputChange = evt => {
         const { name, value } = evt.target;
@@ -51,8 +56,15 @@ export default function Login() {
     }
     const onSubmit = evt => {
         evt.preventDefault();
-
-        
+        axiosWithAuth()
+            .post("/api/login", {username: formValues.user, password: formValues.password})
+                .then(res => {
+                    console.log(res.data)
+                    window.localStorage.setItem("token", res.data.token);
+                    setUser(res.data)
+                    push(`/ownerpage`)
+                })
+                .catch(err => console.log(err));
     }
 
     return(
