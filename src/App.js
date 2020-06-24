@@ -15,7 +15,7 @@ import AddItem from "./components/AddItem";
 import ReturnItem from "./components/ReturnItem";
 
 function App() {
-  const [user, setUser] = useState({"message":"Please login again","token":"","id":1});
+  const [user, setUser] = useState();
   const [items, setItems] = useState([]);
 
   function getItems() {
