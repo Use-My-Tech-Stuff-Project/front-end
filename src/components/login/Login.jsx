@@ -1,8 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import {useHistory} from "react-router-dom";
+import {useHistory, Link} from "react-router-dom";
 import * as Yup from 'yup';
 import './loginStyles.css';
 import {axiosWithAuth} from "../../utils/axiosWithAuth";
+
+
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 import LoginSchema from './LoginSchema';
 
@@ -16,6 +27,8 @@ const initalFormErrors = {
     password: '',
     valid: false,
 }
+
+let passonoff = true;
 
 export default function Login(props) {
     const { setUser } = props;
@@ -54,6 +67,24 @@ export default function Login(props) {
 
         setFormValues({...formValues, [name]: checked});
     }
+    const passwordChange = evt => {
+        let on = document.getElementById('on');
+        let off = document.getElementById('off');
+        let pass = document.getElementById('pass');
+        if(passonoff === true ){
+            passonoff = false;
+            off.classList.remove('visible');
+            on.className = 'visible';
+            pass.type = 'text';
+        }
+        else{
+            passonoff = true;
+            on.classList.remove('visible');
+            off.className = 'visible';
+            pass.type = 'password'
+        }
+    }
+
     const onSubmit = evt => {
         evt.preventDefault();
         axiosWithAuth()
@@ -69,45 +100,84 @@ export default function Login(props) {
 
     return(
         <div className = 'login'>
-            <h3>Log In</h3>
-            <p>Don't have an account? <a href = ''>Sign up</a></p>
+            <h2>Log In</h2>
+            <p>Don't have an account? <Link to = '/signup'>Sign up</Link></p>
             <form onSubmit = {onSubmit}>
                 <div className = 'text'>
                     <label>
-                        <input
+                        <TextField
                             name = 'user'
                             value = {formValues.user}
                             type = 'text'
                             onChange = {onInputChange}
                             placeholder = "Username"
-                            size = '30'
+                            fullWidth
+                            variant = 'filled'
+                            size = 'medium'
+                            InputProps = {{
+                                startAdornment: (
+                                    <InputAdornment position = 'start'>
+                                        <AccountCircle />
+                                    </InputAdornment>
+                                )
+                            }}
                         />
                     </label>
                    <div className = 'error'><p>{formErrors.user}</p></div>
                 </div>
                 <div className = 'text'>
-                    <label className = 'text'>
-                        <input
+                    <label>
+                        <TextField
+                            id = 'pass'
                             name = 'password'
                             value = {formValues.password}
-                            type = 'text'
+                            type = 'password'
                             onChange = {onInputChange}
                             placeholder = "Password"
-                            size = '30'
+                            fullWidth
+                            variant = 'filled'
+                            size = 'medium'
+                            InputProps = {{
+                                startAdornment: (
+                                    <InputAdornment position = 'start'>
+                                        <VpnKeyIcon />
+                                    </InputAdornment>
+                                ),
+                                endAdornment: (
+                                    <InputAdornment position = 'end'>
+                                        <div onClick = {passwordChange}>
+                                            <div  id = 'on'>
+                                             <VisibilityOffIcon />
+                                            </div>
+                                            <div id = 'off' className = 'visible'>
+                                              <VisibilityIcon />
+                                            </div>
+                                        </div>
+                                    </InputAdornment>
+                                )
+                            }}
+                            
                         />
                     </label>
                     <div className = 'error'><p>{formErrors.password}</p></div>
                 </div>
-                <label>
-                    <input
-                        name = 'valid'
-                        value = {formValues.valid}
-                        type = 'checkbox'
-                        onChange = {onCheckBoxChange}
+                <div className = 'roboCheck'>
+                    <FormControlLabel
+                        control = {
+                            <Checkbox
+                                name = 'valid'
+                                value = {formValues.valid}
+                                type = 'checkbox'
+                                onChange = {onCheckBoxChange}
+                                size = 'medium'
+                                label = 'I am not a Robot'
+                            />
+                        }
+                        label = 'I am not a Robot'
                     />
-                I am not a Robot</label>
-                <div className = 'error'><p>{formErrors.valid}</p></div>
-                <button>Log in</button>
+                    <div className = 'error'><p>{formErrors.valid}</p></div>
+                </div>
+                <Button variant = 'contained'>Log in</Button>
             </form>
         </div>
     );

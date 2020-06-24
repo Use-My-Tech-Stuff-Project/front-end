@@ -1,6 +1,4 @@
 .login {
-    border: 1px solid red;
-    width: 40%;
     display: flex;
     flex-flow: column nowrap;
 }
@@ -9,19 +7,23 @@
     flex-flow: column wrap;
     align-items: center;
 }
-.login button {
-    width: 30%;
-    padding: 1%;
+.login label {
+    width: 80%;
 }
-.text input {
-    padding: 5%;
+.login Button {
+    background-color: rgba(11, 41, 28, .7);
+    padding: 1%;
+    width: 10%;
 }
 .text {
-    background-color: pink;
+    width: 50%;
+    margin-top: 2%;
 }
 .error {
     color: red;
     font-size: .7rem;
     text-align: left;
-    width: 40%;
+}
+.visible {
+    display: none;
 }
