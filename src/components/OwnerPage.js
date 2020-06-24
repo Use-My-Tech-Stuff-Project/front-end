@@ -30,7 +30,7 @@ const OwnerPage = props => {
 
     return (
         <>
-            <h2>{user.message}</h2>
+            <h1 className="simonText">{user.message}</h1>
             <button onClick={addHandle}>Add Item</button>
             {/* <button onClick={editProfile}>Edit Profile</button> */}
             {

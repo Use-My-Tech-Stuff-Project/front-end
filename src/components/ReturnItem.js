@@ -60,12 +60,12 @@ const ReturnItem = ({ items, user, getItems }) => {
 
     return (
         <StyledCard>
-            <h1>{currentItem.title}</h1>
+            <h1 className="simonText">{currentItem.title}</h1>
             <StyledImg src={currentItem.imgURL} alt="Images unavailable" />
-            <p>Type: {currentItem.type}</p>
-            <p>{currentItem.description}</p>
-            {currentItem.brand ? <p>Brand: {currentItem.brand}</p> : <p>Brand: Unavailable</p>}
-            {currentItem.model ? <p>Model: {currentItem.model}</p> : <p>Model: Unavailable</p>}
+            <p className="simonText">Type: {currentItem.type}</p>
+            <p className="simonText">{currentItem.description}</p>
+            {currentItem.brand ? <p className="simonText">Brand: {currentItem.brand}</p> : <p className="simonText">Brand: Unavailable</p>}
+            {currentItem.model ? <p className="simonText">Model: {currentItem.model}</p> : <p className="simonText">Model: Unavailable</p>}
             <Button variant="contained" color="default" onClick={backSubmit}>Back</Button>
             <br></br>
             <Button variant="contained" color="secondary" onClick={returnCurrent}>Return Item</Button>

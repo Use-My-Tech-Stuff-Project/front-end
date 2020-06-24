@@ -87,12 +87,12 @@ const UpdateItem = (props) => {
     return (
         <>
             <StyledCard>
-                <h1>{itemValues.title}</h1>
+                <h1 className="simonText">{itemValues.title}</h1>
                 <StyledImg src={itemValues.imgURL} alt="Images unavailable" />
-                <p>Type: {itemValues.type}</p>
-                <p>{itemValues.description}</p>
-                {itemValues.brand ? <p>Brand: {itemValues.brand}</p> : <p>Brand: Unavailable</p>}
-                {itemValues.model ? <p>Model: {itemValues.model}</p> : <p>Model: Unavailable</p>}
+                <p className="simonText">Type: {itemValues.type}</p>
+                <p className="simonText">{itemValues.description}</p>
+                {itemValues.brand ? <p className="simonText">Brand: {itemValues.brand}</p> : <p className="simonText">Brand: Unavailable</p>}
+                {itemValues.model ? <p className="simonText">Model: {itemValues.model}</p> : <p className="simonText">Model: Unavailable</p>}
             </StyledCard>
             <form onSubmit={handleSubmit}>
                 <StyledCardOne>

@@ -26,12 +26,12 @@ const OwnedList = ({ user, items }) => {
     console.log(ownedItems)
     return (
         <div>
-            <h2>My Listings</h2>
+            <h1 className="simonText">My Listings</h1>
             {
                 ownedItems.map(it => {
                     return (
                         <StyledCard onClick={() => push(`/updateItem/${it.id}`)}>
-                            <p>{it.title}</p>
+                            <h3 className="simonText">{it.title}</h3>
                         </StyledCard>
                     )
                 })

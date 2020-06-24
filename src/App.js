@@ -37,8 +37,8 @@ function App() {
           <Link to='/' className='text link'> Home </Link>
           <Link to='/login' className='text link'> Login </Link>
           <Link to='/signup' className='text link'>Signup</Link>
-          <Link to='/ownerpage'>Owner Page</Link>
-          <Link to='/rentalpage'>Rental Page</Link>
+          <Link to='/ownerpage' className='text link'>Owner Page</Link>
+          <Link to='/rentalpage' className='text link'>Rental Page</Link>
         </div>
       </nav>
       <Switch>
