@@ -11,7 +11,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import axios from 'axios'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 
 
 
@@ -48,7 +48,8 @@ export default function SignUp () {
     const [formValues , setFormValues] = useState(initailFormValues)
     const [formErrors , setFormErrors] = useState(initailFormErrors)
     const [users , setUsers] = useState(initailUsers)
-
+    const history = useHistory()
+    const {push} = history
 
       const onInputChange = evt =>{
         const {name , value} = evt.target
@@ -116,6 +117,7 @@ export default function SignUp () {
     const onSubmit = evt =>{
         evt.preventDefault()
         postNewUser(formValues)
+        push('/login')
     }
 
 
