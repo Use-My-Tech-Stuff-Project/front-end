@@ -19,10 +19,16 @@ const OwnerPage = props => {
 
     return (
         <>
-            <h1 className="simonText">{user.message}</h1>
-            <Button variant="contained" color="primary" onClick={addHandle}>Add Item</Button>
-            <OwnedList user={user} items={items} />
-            <RentedItems user={user} items={items} />
+            {
+                user ? (
+                    <>
+                        <h1 className="simonText">{user.message}</h1>
+                        <Button variant="contained" color="primary" onClick={addHandle}>Add Item</Button>
+                        <OwnedList user={user} items={items} />
+                        <RentedItems user={user} items={items} />
+                    </>
+                ) : push("/login")
+            }
         </>
     )
 }
