@@ -16,7 +16,6 @@ function App() {
       </nav>  
       <Switch>
         <Route path='/signup'>
-         
             <SignUp/>
         </Route>
       <Route>
