@@ -177,7 +177,7 @@ export default function Login(props) {
                     />
                     <div className = 'error'><p>{formErrors.valid}</p></div>
                 </div>
-                <Button variant = 'contained'>Log in</Button>
+                <Button variant = 'contained' onClick={onSubmit}>Log in</Button>
             </form>
         </div>
     );
