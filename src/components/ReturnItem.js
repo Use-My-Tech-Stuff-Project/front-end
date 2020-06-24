@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+
 import { Button, Card } from "@material-ui/core";
 import styled from "styled-components";
 
@@ -32,8 +34,6 @@ const ReturnItem = ({ items, user, getItems }) => {
 
     const returnCurrent = e => {
         e.preventDefault();
-        // .put to availability
-        // waiting for api
         console.log({ ...currentItem, availability: true, renter: null })
         axiosWithAuth()
             .put(`/api/items/${id}`, { ...currentItem, availability: true, renter: null })

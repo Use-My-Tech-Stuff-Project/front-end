@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+
 import { Button, TextField, Card } from "@material-ui/core";
 import styled from "styled-components";
 
@@ -15,6 +17,7 @@ const StyledCard = styled(Card)`
 `;
 
 const AddItem = ({ user, items, getItems }) => {
+
     const initialItemValues = {
         title: "",
         type: "",
@@ -26,6 +29,7 @@ const AddItem = ({ user, items, getItems }) => {
         availability: true,
         owner: user.id,
     }
+
     const [itemValues, setItemValues] = useState(initialItemValues);
     const { push } = useHistory();
     const [ownedItems, setOwnedItems] = useState([]);

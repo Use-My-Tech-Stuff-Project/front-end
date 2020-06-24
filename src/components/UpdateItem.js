@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
+
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+
 import { Button, TextField, Card } from "@material-ui/core";
 import styled from "styled-components";
 
@@ -94,6 +96,7 @@ const UpdateItem = (props) => {
                 {itemValues.brand ? <p className="simonText">Brand: {itemValues.brand}</p> : <p className="simonText">Brand: Unavailable</p>}
                 {itemValues.model ? <p className="simonText">Model: {itemValues.model}</p> : <p className="simonText">Model: Unavailable</p>}
             </StyledCard>
+            
             <form onSubmit={handleSubmit}>
                 <StyledCardOne>
                     <TextField

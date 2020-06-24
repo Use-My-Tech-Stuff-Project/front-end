@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 import { Card } from "@material-ui/core";
 import styled from "styled-components";
 
@@ -25,7 +26,9 @@ const ItemList = ({ items, user }) => {
     const history = useHistory();
     const { push } = history;
     console.log(items);
+
     const availableItems = items.filter(item => item.availability === true && item.owner !== user.id);
+
     return (
         <div>
             <h1 className="simonText">Items</h1>

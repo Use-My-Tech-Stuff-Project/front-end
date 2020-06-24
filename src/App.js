@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import './App.css';
-import SignUp from './components/SignUp'
 import { Switch, Route, Link } from 'react-router-dom'
 
-import Login from './components/login/Login';
+import { axiosWithAuth } from './utils/axiosWithAuth';
 
+import './App.css';
+
+import SignUp from './components/SignUp'
+import Login from './components/login/Login';
 import RentalPage from "./components/RentalPage";
 import Item from "./components/Item";
-import { axiosWithAuth } from './utils/axiosWithAuth';
 import PrivateRoute from "./components/PrivateRoute"
 import OwnerPage from "./components/OwnerPage";
 import UpdateItem from "./components/UpdateItem";
@@ -23,7 +24,6 @@ function App() {
       .get("/api/items")
       .then(res => setItems(res.data))
   }
-
 
   useEffect(() => getItems(), [])
 
