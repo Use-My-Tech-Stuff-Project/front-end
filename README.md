@@ -1,3 +1,6 @@
+Product Vision Document: https://docs.google.com/document/d/1ttxxjo1nL5bjrJMc3KIMGONgv5m9SoJlr6dsc3gyxDE/edit?usp=sharing
+Deployed App: https://usemy-techstuff.vercel.app/login
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
