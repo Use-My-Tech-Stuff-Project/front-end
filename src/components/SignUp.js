@@ -137,15 +137,18 @@ export default function SignUp () {
                 padding: '2%',
                 height: '70%',
                 background:'ivory',
+                display:'flex',
+                justifyContent:'center',
             },
             container:{
                 width: '30%',
+                padding: '2%',
                
-                display:'flex',
-                flexDirection: 'column', 
+                
             },
             div:{
                 display:'flex',
+                // flexDirection:'column',
                 justifyContent:'center',  
             },
             input:{
@@ -153,6 +156,14 @@ export default function SignUp () {
             },
             icon:{
                 fontSize:'30',
+                paddingLeft: '15%'
+            }, 
+            div2:{
+                display:'flex',
+                flexDirection:'column',
+                justifyContent:'center',
+                paddingLeft: '40%'
+
             }
         }
 
@@ -163,9 +174,11 @@ export default function SignUp () {
       
         <form style={makeStyles().signup} onSubmit={onSubmit} >
         <div >
+          <div style={makeStyles().div2}> 
             <h1 className='text' >Sign up</h1>
             <LockIcon style={makeStyles().icon}/>
             <h2 className='text' > * Indicates a required field</h2>
+           </div>
             <div style={makeStyles().div} >
                 <div  style={makeStyles().container}className='bigContainer'>
                     <label>
